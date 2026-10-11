@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Improv CROW word list</title>
+<style>
+  :root {
+    --bg: #fbf8f1;
+    --ink: #1e1e24;
+    --line: #d6d0c4;
+    --c0: #ffe1e1;
+    --c1: #dff3df;
+    --c2: #dce9ff;
+    --c3: #fff1c7;
+    --c4: #eadfff;
+    --C: #c0392b; --C-tint: #fde2df;
+    --R: #c25e00; --R-tint: #fde8d4;
+    --O: #1e8449; --O-tint: #d9f2e3;
+    --W: #2471a3; --W-tint: #dbe9f7;
+    --E: #7d3c98; --E-tint: #ecdff5;
+    --A: #a3306f;
+    --N: #555555;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Atkinson Hyperlegible", "Lexend", Verdana, "Segoe UI", sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    letter-spacing: 0.03em;
+    word-spacing: 0.1em;
+  }
+  button { font: inherit; letter-spacing: inherit; word-spacing: inherit; color: inherit; }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.2rem;
+    background: #ffffffee;
+    border-bottom: 2px solid #ddd;
+  }
+  nav a, nav .navbtn {
+    text-decoration: none;
+    color: var(--ink);
+    padding: 0.25rem 0.8rem;
+    border-radius: 999px;
+    font-weight: 700;
+    border: 2px solid #ccc;
+    background: #fff;
+    cursor: pointer;
+  }
+  .spacer { margin-left: auto; }
+  .toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.8rem;
+    border-radius: 999px;
+    border: 2px solid var(--ink);
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+  }
+  .toggle input { width: 1.3rem; height: 1.3rem; cursor: pointer; }
+  body.info-on .toggle { background: var(--ink); color: #fff; }
+
+  main { max-width: 90rem; margin: 0 auto; padding: 1rem 1.5rem 6rem; }
+  header h1 { margin: 0.5rem 0 0.4rem; font-size: 2rem; }
+  header p { margin: 0.3rem 0; color: #444; }
+  .legend { display: flex; flex-wrap: wrap; gap: 0.7rem; margin: 0.6rem 0; }
+  .legend .item { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 700; }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.8rem;
+    height: 1.8rem;
+    padding: 0 0.4rem;
+    border-radius: 0.4rem;
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.05rem;
+    flex: none;
+  }
+  .bC { background: var(--C); } .bR { background: var(--R); } .bO { background: var(--O); }
+  .bW { background: var(--W); } .bE { background: var(--E); } .bA { background: var(--A); } .bN { background: var(--N); }
+
+  section > h2 {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 3rem 0 1rem;
+    padding: 0.6rem 1rem;
+    border-radius: 0.6rem;
+    font-size: 1.8rem;
+    color: #fff;
+  }
+  section > h2 .badge { background: #fff; font-size: 1.4rem; height: 2.4rem; min-width: 2.4rem; }
+  section > h2 small { font-size: 1.1rem; font-weight: 600; }
+  h3 { margin: 2rem 0 0.8rem; font-size: 1.35rem; border-left: 6px solid #999; padding-left: 0.7rem; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 0.7rem; }
+  .cell {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    min-height: 3.6rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 0.6rem;
+    border: 2px solid transparent;
+  }
+  .cell:hover { border-color: var(--ink); }
+  body.info-on .cell { cursor: pointer; }
+  .cell .e { font-size: 1.7rem; line-height: 1; flex: none; width: 2.2rem; text-align: center; }
+  .cell .w { font-weight: 600; }
+  .bg0 { background: var(--c0); } .bg1 { background: var(--c1); } .bg2 { background: var(--c2); }
+  .bg3 { background: var(--c3); } .bg4 { background: var(--c4); }
+
+  /* ---------- cards (every popup is a stacked dialog) ---------- */
+  dialog.card {
+    width: min(34rem, 94vw);
+    max-height: 88vh;
+    border: none;
+    border-radius: 1rem;
+    padding: 1.1rem 1.4rem 1.3rem;
+    background: var(--bg);
+    color: var(--ink);
+    box-shadow: 0 10px 40px #0005;
+  }
+  dialog.card.small { width: min(26rem, 90vw); border: 3px solid var(--ink); }
+  dialog.card.pane-open { width: min(80rem, 96vw); }
+  dialog.card::backdrop { background: #0004; }
+  dialog.card .close {
+    position: absolute;
+    top: 0.7rem;
+    right: 0.8rem;
+    font-size: 1.3rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+  dialog.card h2 { display: flex; align-items: center; gap: 0.6rem; margin: 0 2.2rem 0.5rem 0; font-size: 1.55rem; }
+  .angle { background: #fff1c7; border-radius: 0.6rem; padding: 0.45rem 0.8rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .lbl { margin: 0.75rem 0 0.3rem; font-weight: 800; }
+  .chips { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .chips li {
+    padding: 0.12rem 0.6rem;
+    border-radius: 0.5rem;
+    background: #fff;
+    border: 1px solid var(--line);
+    font-size: 1.05rem;
+  }
+  .chips li.btn { padding: 0; border: none; background: none; }
+  .chips button {
+    padding: 0.12rem 0.6rem;
+    border-radius: 0.5rem;
+    font-size: 1.05rem;
+    text-align: left;
+    cursor: pointer;
+  }
+  .chips button.ex { background: #fff7d6; border: 2px dashed var(--ink); }
+  .chips button.link { background: #fff; border: 2px solid var(--ink); text-decoration: underline; text-underline-offset: 0.2rem; }
+  .chips button:hover { background: var(--ink); color: #fff; }
+  .small ul.plain { margin: 0.3rem 0 0; padding-left: 1.3rem; }
+  .small ul.plain li { margin: 0.25rem 0; }
+
+  .pane-btn {
+    margin-top: 1.1rem;
+    font-weight: 700;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    border: 2px solid var(--ink);
+    background: #fff;
+    cursor: pointer;
+  }
+  .pane { display: none; }
+  .pane-open .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 1.5rem; }
+  .pane-open .pane {
+    display: block;
+    max-height: 76vh;
+    overflow-y: auto;
+    padding: 0.2rem 0.8rem 0.5rem 1.4rem;
+    border-left: 3px solid var(--line);
+  }
+  @media (max-width: 900px) {
+    .pane-open .wrap { grid-template-columns: 1fr; }
+    .pane-open .pane { max-height: none; border-left: none; border-top: 3px solid var(--line); padding: 0.8rem 0 0; }
+  }
+  .pane h3 { border: none; padding: 0; margin: 0.4rem 0 0.4rem; font-size: 1.2rem; }
+  .pane .hint { color: #555; font-size: 1.02rem; margin: 0 0 0.6rem; }
+  .lines { list-style: none; margin: 0 0 0.8rem; padding: 0; }
+  .lines li { background: #fff; border: 1px solid var(--line); border-radius: 0.6rem; padding: 0.45rem 0.8rem; margin: 0.4rem 0; line-height: 1.9; }
+  .lines .who { font-weight: 800; }
+  .tag { border-radius: 0.3rem; padding: 0.05rem 0.25rem; border-bottom: 3px solid; }
+  .tag sup { font-size: 0.7rem; font-weight: 800; margin-left: 0.15rem; }
+  .tC { background: var(--C-tint); border-color: var(--C); } .tC sup { color: var(--C); }
+  .tR { background: var(--R-tint); border-color: var(--R); } .tR sup { color: var(--R); }
+  .tO { background: var(--O-tint); border-color: var(--O); } .tO sup { color: var(--O); }
+  .tW { background: var(--W-tint); border-color: var(--W); } .tW sup { color: var(--W); }
+  .tE { background: var(--E-tint); border-color: var(--E); } .tE sup { color: var(--E); }
+  .tuesday .them { color: #666; }
+  .mix { background: #fff; border: 1px solid var(--line); border-radius: 0.6rem; padding: 0.4rem 0.9rem; }
+  .mix summary { cursor: pointer; font-weight: 700; }
+  .builder { display: grid; grid-template-columns: auto 1fr; gap: 0.5rem 0.7rem; align-items: start; margin: 0.6rem 0 0.3rem; }
+  .builder .rowlbl { display: flex; align-items: center; gap: 0.4rem; font-weight: 700; }
+
+  /* ---------- roulette ---------- */
+  #roulette { width: min(60rem, 96vw); }
+  .rtip { margin: 0.2rem 0 1rem; color: #444; }
+  .rcards { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: 0.8rem; }
+  .rcard { border-radius: 0.8rem; padding: 0.7rem 0.8rem 0.6rem; border: 3px solid; background: #fff; display: flex; flex-direction: column; gap: 0.4rem; }
+  .rcard .head { display: flex; align-items: center; gap: 0.4rem; font-weight: 800; }
+  .rcard .pick { font-size: 1.3rem; font-weight: 700; cursor: pointer; text-decoration: underline dotted; text-underline-offset: 0.25rem; }
+  .rcard .pick .em { display: block; font-size: 2rem; }
+  .rcard .reroll { align-self: flex-start; border: 2px solid var(--line); background: var(--bg); border-radius: 999px; padding: 0.1rem 0.7rem; cursor: pointer; }
+  .rbar { display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: center; margin-top: 1rem; }
+  .rbar .big { font-weight: 800; padding: 0.5rem 1.2rem; border-radius: 999px; border: 2px solid var(--ink); background: var(--ink); color: #fff; cursor: pointer; }
+  .rbar label { display: flex; align-items: center; gap: 0.35rem; }
+  .rbar input { width: 1.2rem; height: 1.2rem; }
+
+  /* ---------- phones ---------- */
+  @media (max-width: 640px) {
+    body { font-size: 1.1rem; }
+    nav {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding: 0.5rem 0.7rem;
+      gap: 0.4rem;
+      scrollbar-width: none;
+    }
+    nav a, nav .navbtn, .toggle { flex: none; white-space: nowrap; }
+    .spacer { margin-left: 0; }
+    main { padding: 0.6rem 0.8rem 4rem; }
+    header h1 { font-size: 1.5rem; }
+    section > h2 { flex-wrap: wrap; font-size: 1.4rem; margin-top: 2rem; gap: 0.5rem; }
+    section > h2 small { font-size: 0.95rem; }
+    .grid { grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: 0.5rem; }
+    .cell { min-height: 3.2rem; padding: 0.4rem 0.6rem; gap: 0.5rem; }
+    .cell .e { font-size: 1.4rem; width: 1.7rem; }
+    .cell .w { min-width: 0; overflow-wrap: anywhere; hyphens: auto; }
+    dialog.card, dialog.card.small, dialog.card.pane-open, #roulette {
+      width: 100%;
+      max-width: 100%;
+      max-height: 90vh;
+      margin: auto 0 0;
+      border-radius: 1rem 1rem 0 0;
+      padding: 1rem 1rem 1.5rem;
+    }
+    dialog.card h2 { font-size: 1.3rem; }
+    .chips button, .chips li { font-size: 1rem; }
+    .chips button { min-height: 2.2rem; }
+    .rcards { grid-template-columns: repeat(2, 1fr); }
+    .builder { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<nav id="nav"></nav>
+<main>
+  <header>
+    <h1>🎭 Improv CROW word list</h1>
+    <div class="legend" id="legend"></div>
+    <p>Turn on <b>🔍 Details</b> and click any word. Underlined chips open another card; dashed chips open examples. <b>🧩 CROW examples</b> opens a side pane with one-liners, It's Tuesday replies and Freeze Tag poses.</p>
+    <p><b>🎲 CROW roulette</b>: get a random mix and set it all up in one line. Statements, not questions.</p>
+    <p id="meta"></p>
+  </header>
+  <div id="list"></div>
+</main>
+
+<dialog id="roulette" class="card">
+  <button class="close" aria-label="Close">✕</button>
+  <h2>🎲 CROW roulette</h2>
+  <p class="rtip">Say one line that sets up all of it. Make statements, not questions. Click a word for help.</p>
+  <div class="rcards" id="rcards"></div>
+  <div class="rbar">
+    <button class="big" id="rollAll">🎲 Roll all</button>
+    <label><input type="checkbox" id="tierFamiliar"> include Familiar</label>
+    <label><input type="checkbox" id="tierStretch"> include Stretch</label>
+  </div>
+</dialog>
+
+<script>
+// Filled by the files in data/: POPUP = small card, APPROACHES = approach cards, CROW = side pane examples, EXAMPLES = examples for plain chips.
+const POPUP = {};
+const APPROACHES = {};
+const CROW = {};
+const EXAMPLES = {};
+</script>
+<script src="data/popup-character-1.js"></script>
+<script src="data/popup-character-2.js"></script>
+<script src="data/popup-relationship.js"></script>
+<script src="data/popup-objective.js"></script>
+<script src="data/popup-where.js"></script>
+<script src="data/popup-emotion-names.js"></script>
+<script src="data/approaches.js"></script>
+<script src="data/crow-character-1.js"></script>
+<script src="data/crow-character-2.js"></script>
+<script src="data/crow-relationship.js"></script>
+<script src="data/crow-objective.js"></script>
+<script src="data/crow-where-1.js"></script>
+<script src="data/crow-where-2.js"></script>
+<script src="data/crow-emotion-names.js"></script>
+<script src="data/examples-character-1.js"></script>
+<script src="data/examples-character-2a.js"></script>
+<script src="data/examples-character-2b.js"></script>
+<script src="data/examples-relationship-a.js"></script>
+<script src="data/examples-relationship-b.js"></script>
+<script src="data/examples-objective-a.js"></script>
+<script src="data/examples-objective-b.js"></script>
+<script src="data/examples-where-a.js"></script>
+<script src="data/examples-where-b.js"></script>
+<script src="data/examples-emotion.js"></script>
+<script src="data/examples-names.js"></script>
+<script src="data/examples-approaches.js"></script>
+
+<script>
+const LETTERS = { C: "Character", R: "Relationship", O: "Objective", W: "Where", E: "Emotion" };
+
+// Edit the lists below: one entry per line, "emoji word". Tiers: everyday, familiar, stretch.
+const DATA = [
+  {
+    id: "character", letter: "C", title: "Character", hint: "who you are", subs: [
+      { tier: "everyday", items: `
+🏡 Neighbour
+🚶 Stranger on the sidewalk
+👫 Friend
+👩 Mum
+👨 Dad
+🧒 Kid
+👵 Grandma
+👴 Grandpa
+🛋️ Roommate
+🤝 Coworker
+👔 Boss
+🛍️ Customer
+🍽️ Waiter
+🛒 Cashier
+☕ Barista
+🍸 Bartender
+🚕 Cab driver
+🚌 Bus driver
+🚚 Delivery driver
+📬 Mail carrier
+🐕 Dog walker
+📸 Tourist
+🩺 Doctor
+🧑‍⚕️ Nurse
+🧑‍🏫 Teacher
+🎒 Student
+📋 Receptionist
+🏋️ Gym buddy
+🔑 Landlord
+🍼 Babysitter
+` },
+      { tier: "familiar", items: `
+💇 Hairdresser
+🦷 Dentist
+🧑‍🍳 Chef
+📚 Librarian
+👮 Cop
+🧑‍🚒 Firefighter
+🏊 Lifeguard
+💪 Personal trainer
+🧘 Yoga instructor
+🗺️ Tour guide
+🏠 Real estate agent
+🚗 Car salesman
+🔧 Plumber
+🔌 Electrician
+🧹 Janitor
+🛡️ Security guard
+🧑‍✈️ Pilot
+💁 Flight attendant
+🛎️ Hotel concierge
+🐄 Farmer
+🐾 Vet
+📰 Reporter
+📣 Coach
+🎓 Principal
+💼 Middle manager
+🧑‍💻 IT guy
+☎️ Telemarketer
+📱 Influencer
+💐 Wedding planner
+🎸 Street musician
+` },
+      { tier: "stretch", items: `
+🎤 Pop star
+🕵️ Detective
+🧑‍⚖️ Judge
+🪄 Magician
+🤡 Clown
+🔮 Fortune teller
+🚀 Astronaut
+🤠 Cowboy
+🏴‍☠️ Pirate
+👑 King
+👸 Queen
+🎅 Santa
+🦸 Superhero
+🦹 Villain
+🧙 Wizard
+🧚 Fairy godmother
+👻 Ghost
+🧛 Vampire
+🤖 Robot
+👽 Alien
+` },
+    ]
+  },
+  {
+    id: "relationship", letter: "R", title: "Relationship", hint: "who you are to each other", subs: [
+      { tier: "everyday", items: `
+🏘️ Neighbours
+👯 Best friends
+🙂 Strangers
+🛋️ Roommates
+🤝 Coworkers
+🧑‍🤝‍🧑 Siblings
+👨‍👧 Parent & kid
+💑 Couple
+👵 Grandparent & grandkid
+🍽️ Customer & server
+👔 Boss & employee
+🍷 First date
+🫂 Old friends meeting again
+🎒 Classmates
+🏋️ Gym buddies
+⚽ Teammates
+🔑 Landlord & tenant
+🗺️ Tourist & local
+` },
+      { tier: "familiar", items: `
+💍 Newlyweds
+🧑‍🏫 Teacher & student
+🩺 Doctor & patient
+🆕 New hire & trainer
+📣 Coach & player
+🧒 Babysitter & kid
+🐶 Owner & pet
+🧭 Mentor & student
+🏡 In-laws
+💔 Exes who are still friends
+👬 Twins
+🚸 Carpool parents
+🧓 Elderly couple
+✉️ Pen pals meeting at last
+` },
+      { tier: "stretch", items: `
+🥊 Friendly rivals
+🕴️ Partners in crime
+👀 Superfan & celebrity
+🎭 Star & understudy
+🦸 Hero & sidekick
+🃏 King & jester
+👽 Alien & first human
+👻 Ghost & homeowner
+` },
+    ]
+  },
+  {
+    id: "objective", letter: "O", title: "Objective", hint: "what you want", subs: [
+      { tier: "everyday", items: `
+🙋 Ask for help
+🪜 Borrow something
+👋 Make a new friend
+🌈 Cheer them up
+🙏 Say thank you
+💐 Say sorry
+🎉 Celebrate good news
+🔍 Find something lost
+🧭 Get directions
+🍔 Order food
+↩️ Return something
+💌 Invite them
+🥄 Get them to try something
+🧳 Plan a trip
+🔧 Fix something
+🧠 Teach them something
+🤞 Ask a favour
+✨ Show off something new
+🏷️ Get a good deal
+🤫 Share a fun secret
+` },
+      { tier: "familiar", items: `
+💘 Get a date
+👔 Impress the boss
+💰 Get a raise
+😂 Make them laugh
+🧾 Get a refund
+🕊️ Make peace
+🚗 Get them to come along
+🎁 Keep a surprise secret
+🏆 Win the game
+🍰 Get the last slice
+🐾 Adopt the dog
+💸 Sell something
+🍽️ Get a table
+📞 Get off the phone politely
+🕺 Get everyone dancing
+` },
+      { tier: "stretch", items: `
+💍 Propose
+💞 Win them back
+🛑 Stop the wedding
+🧪 Prove the theory
+🏃 Escape
+🫡 Recruit them
+🎟️ Get in without a ticket
+🗺️ Find the treasure
+🦸 Save the day
+🌍 Take over the world, nicely
+` },
+    ]
+  },
+  {
+    id: "where", letter: "W", title: "Where", hint: "where you are", subs: [
+      { tier: "everyday", items: `
+🛣️ Road
+🚶 Sidewalk
+🏘️ Neighbourhood
+🌳 Park
+🏢 Apartment lobby
+🍳 Kitchen
+🛋️ Living room
+🏡 Backyard
+☕ Coffee shop
+🛒 Supermarket
+🏋️ Gym
+🚏 Bus stop
+🚌 Bus
+🚗 Car
+💼 Office
+🥤 Break room
+🛗 Elevator
+🍝 Restaurant
+🍺 Bar
+🏫 School
+🩺 Doctor's waiting room
+🧺 Laundromat
+🅿️ Parking lot
+⛽ Gas station
+💊 Pharmacy
+` },
+      { tier: "familiar", items: `
+🗽 Tourist spot
+🏛️ Museum
+🏖️ Beach
+🐘 Zoo
+🛫 Airport
+✈️ Airplane
+🚆 Train station
+🏨 Hotel lobby
+📚 Library
+🎳 Bowling alley
+🍿 Cinema
+🎶 Concert
+💒 Wedding
+🎂 Birthday party
+💇 Hair salon
+🏥 Hospital
+🏕️ Campsite
+🥾 Hiking trail
+🥕 Farmers' market
+🛍️ Mall
+🐠 Pet shop
+🏊 Swimming pool
+🏟️ Stadium
+🥐 Bakery
+🌮 Food truck
+🚿 Car wash
+🦷 Dentist's office
+🧑‍🏫 Classroom
+🏓 Community centre
+🎢 Theme park
+` },
+      { tier: "stretch", items: `
+🛳️ Cruise ship
+🏝️ Desert island
+🏰 Castle
+🚀 Spaceship
+🌕 Moon base
+🏚️ Haunted house
+⚓ Submarine
+🌋 Volcano
+🌴 Jungle
+🏴‍☠️ Pirate ship
+🤠 Wild West saloon
+🛡️ Medieval village
+🎄 North Pole
+📺 TV game show
+⏳ Time machine
+` },
+    ]
+  },
+  {
+    id: "emotion", letter: "E", title: "Emotion", hint: "how you feel (bonus)", subs: [
+      { tier: "everyday", items: `
+😀 Happy
+🤩 Excited
+😬 Nervous
+🦚 Proud
+😲 Surprised
+🧐 Curious
+🤗 Grateful
+😌 Relaxed
+😴 Tired
+😒 Annoyed
+🤔 Confused
+😳 Embarrassed
+😢 Sad
+🌈 Hopeful
+🤪 Silly
+` },
+      { tier: "familiar", items: `
+🥳 Giddy
+😍 Smitten
+🌟 Starstruck
+😮‍💨 Relieved
+💚 Jealous
+🫣 Awkward
+😑 Bored
+💪 Determined
+📷 Nostalgic
+⏰ Impatient
+🙈 Shy
+😎 Confident
+` },
+      { tier: "stretch", items: `
+🤯 Overwhelmed
+😂 Hysterical
+🤬 Furious
+😱 Terrified
+😭 Heartbroken
+😈 Mischievous
+😯 Awestruck
+🚨 Panicked
+` },
+    ]
+  },
+  {
+    id: "approaches", letter: "A", title: "Approaches", hint: "what people interact about", subs: [
+      { title: "Home & neighbours", items: `
+🗑️ House logistics
+🪜 Borrowing & lending
+🥧 Food exchange
+📦 Packages & mail
+🐶 Pets
+🌷 Gardens & yards
+🔨 Fixing things
+🚚 Moving in & out
+🤫 Noise & quiet hours
+` },
+      { title: "Food & drink", items: `
+☕ Usual orders
+⭐ Recommendations
+🧂 Special requests
+🍳 Cooking together
+` },
+      { title: "Shops & service", items: `
+💬 Counter small talk
+🔍 Finding things
+↩️ Returns & refunds
+🏷️ Deals & discounts
+👏 Compliments to staff
+` },
+      { title: "Work & school", items: `
+🗓️ Weekend plans
+🫖 Office kitchen
+📊 Projects & deadlines
+🎂 Work celebrations
+📚 Homework & tests
+` },
+      { title: "Getting around", items: `
+🧭 Directions
+🌦️ Weather & traffic
+🚗 Rides & carpools
+🔎 Lost & found
+✈️ Travel stories
+` },
+      { title: "Social & events", items: `
+💌 Event invites
+🎉 Celebrations
+🫂 Catching up
+🗞️ Friendly gossip
+🎾 Common activities
+🎨 Shared hobbies
+🏆 Games & sports
+` },
+      { title: "Help & care", items: `
+🙋 Favours
+💡 Advice
+🌈 Cheering up
+🩹 Health check-ins
+🧠 Teaching & learning
+` },
+    ]
+  },
+  {
+    id: "names", letter: "N", title: "Names", hint: "quick names to grab", subs: [
+      { title: "Common first names", items: `
+🙂 Sam
+🧢 Alex
+🌻 Maria
+🔧 Dave
+📚 Emma
+🍺 Mike
+☕ Sarah
+🎸 Chris
+🪷 Priya
+🏀 Jamal
+🎮 Kevin
+📋 Linda
+🎣 Tom
+🧁 Anna
+⚽ Carlos
+🎨 Mei
+🚲 Ben
+🌸 Grace
+📖 Omar
+🌹 Rosa
+` },
+      { title: "Older names", items: `
+🧶 Doris
+🎩 Harold
+🫖 Gladys
+🎣 Walter
+🎖️ Frank
+📻 Edna
+` },
+      { title: "Young names", items: `
+📱 Brayden
+🎧 Kayleigh
+🧋 Ava
+⚽ Noah
+🌙 Luna
+🧃 Kai
+` },
+      { title: "Pet names", items: `
+🐶 Biscuit
+🐕 Rex
+🐱 Mr. Whiskers
+🐠 Bubbles
+🐍 Noodle
+` },
+      { title: "Places & businesses", items: `
+🍕 Sal's Pizza
+🍻 The Rusty Anchor
+🏪 QuickStop
+🌲 Pinewood Falls
+🥯 Bagel Barn
+` },
+    ]
+  },
+];
+
+const TIER_TITLES = { everyday: "Everyday (start here)", familiar: "Familiar", stretch: "Stretch (fun extras)" };
+const BADGE_TEXT = { A: "🧭", N: "🏷️" };
+const PALETTE = 5;
+const nav = document.getElementById("nav");
+const list = document.getElementById("list");
+const POOL = { C: [], R: [], O: [], W: [], E: [] };
+const INFO = {};
+let total = 0;
+
+function el(tag, cls, text) {
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (text != null) n.textContent = text;
+  return n;
+}
+function badge(letter) { return el("span", "badge b" + letter, BADGE_TEXT[letter] || letter); }
+function colourOf(letter) { return getComputedStyle(document.documentElement).getPropertyValue("--" + letter).trim(); }
+function popupText(key) { return POPUP[key] || APPROACHES[key]; }
+
+const legend = document.getElementById("legend");
+for (const [k, v] of Object.entries({ ...LETTERS, A: "Approaches" })) {
+  const s = el("span", "item");
+  s.append(badge(k), v);
+  legend.append(s);
+}
+
+for (const sec of DATA) {
+  const a = el("a");
+  a.href = "#" + sec.id;
+  a.append((BADGE_TEXT[sec.letter] || sec.letter + " -") + " " + sec.title);
+  a.style.borderColor = colourOf(sec.letter);
+  nav.appendChild(a);
+
+  const section = el("section");
+  section.id = sec.id;
+  const h2 = el("h2");
+  h2.style.background = colourOf(sec.letter);
+  const hb = el("span", "badge", BADGE_TEXT[sec.letter] || sec.letter);
+  hb.style.color = colourOf(sec.letter);
+  h2.append(hb, sec.title, el("small", null, "- " + sec.hint));
+  section.appendChild(h2);
+
+  for (const sub of sec.subs) {
+    const h3 = el("h3", null, sub.title || TIER_TITLES[sub.tier]);
+    h3.style.borderLeftColor = colourOf(sec.letter);
+    section.appendChild(h3);
+    const grid = el("div", "grid");
+    for (const line of sub.items.split("\n")) {
+      const t = line.trim();
+      if (!t) continue;
+      const i = t.indexOf(" ");
+      const emoji = t.slice(0, i), word = t.slice(i + 1);
+      const cell = el("div", "cell");
+      cell.append(el("span", "e", emoji), el("span", "w", word));
+      cell.dataset.word = word;
+      INFO[word] = { emoji, letter: sec.letter };
+      if (POOL[sec.letter]) POOL[sec.letter].push({ emoji, word, tier: sub.tier });
+      grid.appendChild(cell);
+      total++;
+    }
+    section.appendChild(grid);
+  }
+  list.appendChild(section);
+}
+
+const missing = Object.keys(INFO).filter(k => !popupText(k));
+document.getElementById("meta").textContent = total + " words. Most common first in each section." +
+  (missing.length ? " Missing cards: " + missing.join(", ") : "");
+
+// (2*row + col) mod 5 keeps every horizontal, vertical and diagonal neighbour a different colour.
+function colourGrids() {
+  for (const grid of document.querySelectorAll(".grid")) {
+    const cols = getComputedStyle(grid).gridTemplateColumns.split(" ").length;
+    grid.querySelectorAll(".cell").forEach((cell, idx) => {
+      const row = Math.floor(idx / cols), col = idx % cols;
+      cell.classList.remove("bg0", "bg1", "bg2", "bg3", "bg4");
+      cell.classList.add("bg" + ((2 * row + col) % PALETTE));
+    });
+  }
+}
+colourGrids();
+window.addEventListener("resize", colourGrids);
+
+const rBtn = el("button", "navbtn spacer", "🎲 CROW roulette");
+nav.appendChild(rBtn);
+const notesLink = el("a", null, "📓 Class notes");
+notesLink.href = "notes.html";
+nav.appendChild(notesLink);
+const toggle = el("label", "toggle");
+toggle.innerHTML = '<input type="checkbox" id="infoToggle"> 🔍 Details';
+nav.appendChild(toggle);
+document.getElementById("infoToggle").addEventListener("change", (ev) => {
+  document.body.classList.toggle("info-on", ev.target.checked);
+});
+
+// ---------- cards ----------
+let paneOpen = false;
+
+function closeOnBackdrop(d) {
+  d.addEventListener("click", (ev) => {
+    if (ev.target !== d) return;
+    const r = d.getBoundingClientRect();
+    const inside = ev.clientX >= r.left && ev.clientX <= r.right && ev.clientY >= r.top && ev.clientY <= r.bottom;
+    if (!inside) d.close();
+  });
+}
+
+function newCard(cls) {
+  const d = el("dialog", "card " + (cls || ""));
+  const x = el("button", "close", "✕");
+  x.setAttribute("aria-label", "Close");
+  x.addEventListener("click", () => d.close());
+  d.append(x);
+  d.addEventListener("close", () => d.remove());
+  closeOnBackdrop(d);
+  document.body.append(d);
+  return d;
+}
+
+function openExamples(title, items) {
+  const d = newCard("small");
+  d.append(el("h2", null, "📝 " + title));
+  const ul = el("ul", "plain");
+  items.forEach(x => ul.append(el("li", null, x)));
+  d.append(ul);
+  d.showModal();
+}
+
+// Chip syntax: "@Key" links to another card, "text [a; b; c]" opens examples, plain text opens examples from EXAMPLES if any.
+const EX_MAP = {};
+function examplesFor(card, chip) {
+  if (!EXAMPLES[card]) return null;
+  if (!EX_MAP[card]) {
+    EX_MAP[card] = new Map();
+    for (const line of EXAMPLES[card].split("\n")) {
+      const i = line.indexOf("==>");
+      if (i < 0) continue;
+      EX_MAP[card].set(line.slice(0, i).trim(), line.slice(i + 3).split(";").map(s => s.trim()).filter(Boolean));
+    }
+  }
+  return EX_MAP[card].get(chip) || null;
+}
+
+function chipList(text, card) {
+  const ul = el("ul", "chips");
+  for (const raw of text.split("|")) {
+    const item = raw.trim();
+    if (!item) continue;
+    const li = el("li");
+    const ex = item.match(/^(.*?)\s*\[(.*)\]$/);
+    const fromFile = card && !ex && !item.startsWith("@") ? examplesFor(card, item) : null;
+    if (item.startsWith("@") && popupText(item.slice(1))) {
+      const key = item.slice(1);
+      const b = el("button", "link", ((INFO[key] && INFO[key].emoji) || "") + " " + key);
+      b.addEventListener("click", () => openCard(key));
+      li.className = "btn";
+      li.append(b);
+    } else if (ex || fromFile) {
+      const label = ex ? ex[1] : item;
+      const items = ex ? ex[2].split(";").map(s => s.trim()).filter(Boolean) : fromFile;
+      const b = el("button", "ex", label + " ▸");
+      b.addEventListener("click", () => openExamples(label, items));
+      li.className = "btn";
+      li.append(b);
+    } else {
+      li.textContent = item.replace(/^@/, "");
+    }
+    ul.append(li);
+  }
+  return ul;
+}
+
+// "{R:text}" becomes a highlighted span tagged with its CROW letter.
+function taggedLine(text, into) {
+  const re = /\{([CROWE]):([^}]*)\}/g;
+  let last = 0, m;
+  while ((m = re.exec(text))) {
+    if (m.index > last) into.append(text.slice(last, m.index));
+    const span = el("span", "tag t" + m[1], m[2]);
+    span.append(el("sup", null, m[1]));
+    into.append(span);
+    last = re.lastIndex;
+  }
+  if (last < text.length) into.append(text.slice(last));
+}
+
+function buildPane(key) {
+  const pane = el("aside", "pane");
+  const rows = {}, lines = [], tuesdays = [], poses = [];
+  for (const raw of CROW[key].split("\n")) {
+    const t = raw.trim();
+    const i = t.indexOf(":");
+    if (i < 0) continue;
+    const k = t.slice(0, i).trim(), v = t.slice(i + 1).trim();
+    if (k === "Line") lines.push(v);
+    else if (k === "Tuesday") tuesdays.push(v);
+    else if (k === "Pose") poses.push(v);
+    else if (k in LETTERS) rows[k] = v;
+  }
+  if (lines.length) {
+    pane.append(el("h3", null, "💬 Whole CROW in one line"));
+    pane.append(el("p", "hint", "For Thank You Endowment and Corridors. Colours show which part sets which letter."));
+    const ul = el("ul", "lines");
+    lines.forEach(l => {
+      const li = el("li");
+      const who = l.match(/^([^{]{1,40}?) - (\{.*)$/);
+      if (who) { li.append(el("span", "who", who[1] + ": ")); taggedLine(who[2], li); }
+      else taggedLine(l, li);
+      ul.append(li);
+    });
+    pane.append(ul);
+  }
+  if (tuesdays.length) {
+    pane.append(el("h3", null, "📅 It's Tuesday!"));
+    const ul = el("ul", "lines tuesday");
+    tuesdays.forEach(l => {
+      const li = el("li");
+      li.append(el("span", "them", "Partner: It's Tuesday!"), el("br"), el("b", null, "You: "));
+      taggedLine(l, li);
+      ul.append(li);
+    });
+    pane.append(ul);
+  }
+  if (poses.length) {
+    pane.append(el("h3", null, "🧍 Freeze Tag: if you're in this pose..."));
+    const ul = el("ul", "lines");
+    poses.forEach(p => {
+      const [pose, meaning] = p.split("->").map(s => s.trim());
+      const li = el("li");
+      li.append(el("b", null, pose), " → ");
+      taggedLine(meaning || "", li);
+      ul.append(li);
+    });
+    pane.append(ul);
+  }
+  const letters = Object.keys(LETTERS).filter(k => rows[k]);
+  if (letters.length) {
+    const mix = el("details", "mix");
+    mix.append(el("summary", null, "🧩 Stuck? Mix-and-match ideas"));
+    const g = el("div", "builder");
+    for (const k of letters) {
+      const lbl = el("div", "rowlbl");
+      lbl.append(badge(k), LETTERS[k]);
+      g.append(lbl, chipList(rows[k]));
+    }
+    mix.append(g);
+    pane.append(mix);
+  }
+  return pane;
+}
+
+function openCard(key) {
+  const text = popupText(key);
+  if (!text) return;
+  const info = INFO[key] || { emoji: "", letter: "A" };
+  const d = newCard();
+  const wrap = el("div", "wrap");
+  const main = el("div", "main");
+  const h = el("h2");
+  h.append(badge(info.letter), (info.emoji ? info.emoji + " " : "") + key);
+  main.append(h);
+  const colour = colourOf(info.letter);
+  for (const raw of text.split("\n")) {
+    const t = raw.trim();
+    const i = t.indexOf(":");
+    if (i < 0) continue;
+    const head = t.slice(0, i).trim(), val = t.slice(i + 1).trim();
+    if (head === "Fun angle") {
+      main.append(el("div", "angle", "✨ " + val.split("|").map(s => s.trim()).join(" · ")));
+      continue;
+    }
+    const lbl = el("div", "lbl", head);
+    lbl.style.color = colour;
+    main.append(lbl, chipList(val, key));
+  }
+  wrap.append(main);
+  if (CROW[key]) {
+    const btn = el("button", "pane-btn");
+    const sync = () => {
+      d.classList.toggle("pane-open", paneOpen);
+      btn.textContent = paneOpen ? "◂ Hide CROW examples" : "🧩 CROW examples ▸";
+    };
+    btn.addEventListener("click", () => { paneOpen = !paneOpen; sync(); });
+    main.append(btn);
+    wrap.append(buildPane(key));
+    sync();
+  }
+  d.append(wrap);
+  d.showModal();
+  d.scrollTop = 0;
+}
+
+list.addEventListener("click", (ev) => {
+  const cell = ev.target.closest(".cell");
+  if (!cell || !document.body.classList.contains("info-on")) return;
+  openCard(cell.dataset.word);
+});
+
+// ---------- roulette ----------
+const roulette = document.getElementById("roulette");
+const rcards = document.getElementById("rcards");
+const picks = {};
+
+function pool(letter) {
+  const fam = document.getElementById("tierFamiliar").checked;
+  const str = document.getElementById("tierStretch").checked;
+  return POOL[letter].filter(x => x.tier === "everyday" || (fam && x.tier === "familiar") || (str && x.tier === "stretch"));
+}
+function roll(letter) {
+  const p = pool(letter);
+  let pick;
+  do { pick = p[Math.floor(Math.random() * p.length)]; } while (p.length > 1 && picks[letter] && pick.word === picks[letter].word);
+  picks[letter] = pick;
+}
+function drawCards() {
+  rcards.replaceChildren();
+  for (const k of Object.keys(LETTERS)) {
+    const card = el("div", "rcard");
+    card.style.borderColor = colourOf(k);
+    const head = el("div", "head");
+    head.append(badge(k), LETTERS[k]);
+    const pick = el("div", "pick");
+    pick.append(el("span", "em", picks[k].emoji), picks[k].word);
+    pick.addEventListener("click", () => openCard(picks[k].word));
+    const rr = el("button", "reroll", "🔄 reroll");
+    rr.addEventListener("click", () => { roll(k); drawCards(); });
+    card.append(head, pick, rr);
+    rcards.append(card);
+  }
+}
+function rollAll() { Object.keys(LETTERS).forEach(roll); drawCards(); }
+
+rBtn.addEventListener("click", () => { rollAll(); roulette.showModal(); });
+document.getElementById("rollAll").addEventListener("click", rollAll);
+roulette.querySelector(".close").addEventListener("click", () => roulette.close());
+closeOnBackdrop(roulette);
+</script>
+</body>
+</html>

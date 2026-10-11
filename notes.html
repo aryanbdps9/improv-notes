@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Improv 100 - class notes</title>
+<style>
+  :root {
+    --bg: #fbf8f1;
+    --ink: #1e1e24;
+    --line: #d6d0c4;
+    --C: #c0392b; --R: #c25e00; --O: #1e8449; --W: #2471a3; --E: #7d3c98;
+    --accent: #a3306f;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Atkinson Hyperlegible", "Lexend", Verdana, "Segoe UI", sans-serif;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    word-spacing: 0.08em;
+  }
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.7rem 1.2rem;
+    background: #ffffffee;
+    border-bottom: 2px solid #ddd;
+    overflow-x: auto;
+  }
+  nav a {
+    flex: none;
+    text-decoration: none;
+    color: var(--ink);
+    padding: 0.25rem 0.8rem;
+    border-radius: 999px;
+    font-weight: 700;
+    border: 2px solid #ccc;
+    background: #fff;
+    white-space: nowrap;
+  }
+  main { max-width: 52rem; margin: 0 auto; padding: 1rem 1.2rem 5rem; }
+  h1 { font-size: 2rem; margin: 0.6rem 0 0.2rem; }
+  .sub { color: #555; margin: 0 0 1.5rem; }
+  .week { margin: 2.5rem 0; }
+  .week > h2 {
+    margin: 0 0 1rem;
+    padding: 0.6rem 1rem;
+    border-radius: 0.7rem;
+    background: var(--accent);
+    color: #fff;
+    font-size: 1.5rem;
+  }
+  .letter { background: #fff; border: 1px solid var(--line); border-radius: 0.8rem; padding: 0.9rem 1.1rem; margin-bottom: 1rem; }
+  .letter p { margin: 0.4rem 0; }
+  .item {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-left: 6px solid var(--accent);
+    border-radius: 0.6rem;
+    padding: 0.7rem 1rem;
+    margin: 0.7rem 0;
+  }
+  .item h3 { margin: 0 0 0.3rem; font-size: 1.2rem; }
+  .item p { margin: 0.3rem 0; }
+  .big { font-size: 1.3rem; font-weight: 800; text-align: center; padding: 0.9rem; background: #fff1c7; border-radius: 0.7rem; margin: 1rem 0; }
+  .term {
+    border-radius: 0.8rem;
+    padding: 0.9rem 1.1rem;
+    margin: 1rem 0;
+    border: 2px solid;
+  }
+  .term h3 { margin: 0 0 0.3rem; font-size: 1.35rem; }
+  .term.block { border-color: #c0392b; background: #fdecea; }
+  .term.waffle { border-color: #b7791f; background: #fff6e0; }
+  .term.yes { border-color: #1e8449; background: #e6f6ec; }
+  .term p { margin: 0.4rem 0; }
+  .chat { margin: 0.6rem 0; display: flex; flex-direction: column; gap: 0.4rem; }
+  .bubble { max-width: 90%; padding: 0.4rem 0.8rem; border-radius: 1rem; background: #fff; border: 1px solid var(--line); }
+  .bubble.b { align-self: flex-end; background: #eef3ff; }
+  .bubble b { margin-right: 0.3rem; }
+  .crow { display: grid; gap: 0.4rem; margin: 0.6rem 0; padding: 0; list-style: none; }
+  .crow li { display: flex; align-items: center; gap: 0.7rem; font-size: 1.25rem; font-weight: 700; }
+  .crow .badge { display: inline-flex; align-items: center; justify-content: center; min-width: 2.2rem; height: 2.2rem; border-radius: 0.5rem; color: #fff; font-weight: 800; }
+  .crow .bonus { font-weight: 600; color: #555; }
+  ul.plain { margin: 0.3rem 0; padding-left: 1.3rem; }
+  .src { color: #666; font-size: 1rem; }
+  .src a { color: inherit; }
+  @media (max-width: 640px) {
+    body { font-size: 1.08rem; }
+    main { padding: 0.6rem 0.8rem 4rem; }
+    h1 { font-size: 1.6rem; }
+    .week > h2 { font-size: 1.3rem; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html">🎭 Word list</a>
+  <a href="#week1">Week 1</a>
+  <a href="#week2">Week 2 - CROW</a>
+</nav>
+<main>
+  <h1>📓 Improv 100 - class notes</h1>
+  <p class="sub">Weekly recaps from class, text kept as sent. Originals: <a href="notes/notes-i100-01.md">week 1 (.md)</a>, <a href="notes/notes-i100-02.md">week 2 (.md)</a>.</p>
+
+  <!-- ===================== WEEK 1 ===================== -->
+  <section class="week" id="week1">
+    <h2>Week 1 9/27/26</h2>
+
+    <div class="letter">
+      <p>Hi Folks!</p>
+      <p>As I mentioned in class, I will be sending out what we did in class each week with a description every week. I'll also mention additional learning opportunities and shows at the end of each week as well!</p>
+    </div>
+
+    <div class="item">
+      <h3>Intro to class &amp; Space</h3>
+      <p>Class is from 3:30pm to 6pm on Sundays starting 9/27-11/15. We'll take a break part way through each week, but please take care of your own needs as they arise!</p>
+    </div>
+
+    <p class="big">Improv is collaborative and spontaneous Theater and Storytelling.</p>
+
+    <div class="item">
+      <h3>Adjective Name Karam</h3>
+      <p>We picked a word that started with the first letter of your first name and a motion to go with it. Then we passed our names and motions around the circle as a way of learning names. We will be doing this for many weeks in class, please remember your name and motion for next week!</p>
+    </div>
+
+    <div class="item">
+      <h3>Like Me</h3>
+      <p>Someone says something that is true for them, and then we stand in proximity to them with how true that is for us</p>
+    </div>
+
+    <div class="item">
+      <h3>Clap Circle</h3>
+      <p>This will be part of the ritual of our class, we will do this every week. We pass a clap around a circle, by simply making eye contact and clapping, aiming to go as quickly as we can. We strive to turn off, or at least notice, when the internal editor in our brains tries to make it more rigid or challenging than just pass energy around a circle. Due to the size of our class, we did this in multiple groups.</p>
+    </div>
+
+    <div class="item">
+      <h3>Word Ball</h3>
+      <p>Also a part of the ritual of our class. Instead of clapping, we now pass words around, aiming to free associate off of the last word we just heard. There is no right or wrong word, there is just the word you say. Including if it's more than one word, a sound, or even "blank". We don't judge ourselves and we don't judge others. We also dare to be dull, our offers don't need to be clever.</p>
+    </div>
+
+    <div class="item">
+      <p>We defined a few terms and practiced what they felt like.</p>
+    </div>
+
+    <p class="big">We are striving to say yes, instead of block, and make bold statements instead of waffling.</p>
+
+    <div class="term block">
+      <h3>🚫 Blocking</h3>
+      <p><b>Denying Reality.</b> This is when we say no to the offer of the reality of the scene that has been established. Example:</p>
+      <div class="chat">
+        <div class="bubble"><b>Person A:</b>Hi Grandma!</div>
+        <div class="bubble b"><b>Person B:</b>I'm not your Grandma, I'm your father!</div>
+      </div>
+      <p>This makes us work way harder than we need to tell stories. It also feels bad, like the offer the person made wasn't good enough. It also makes our stories less collaborative and stay in the same place. There is safety in saying no, it means we know we are now going to have an argument about the basics of the scene. But our goal is to free fall into the unknown, and be rewarded with adventures.</p>
+    </div>
+
+    <div class="term waffle">
+      <h3>🧇 Waffling</h3>
+      <p><b>Refusing to define reality.</b> This is when we ask questions about what's happening in the scene as opposed to making statements defining what's going on.</p>
+      <p>Example:</p>
+      <div class="chat">
+        <div class="bubble"><b>Person A:</b>Hi Grandma!</div>
+        <div class="bubble b"><b>Person B:</b>Hi! What are you doing?</div>
+      </div>
+      <p>We want to be creating the worlds and stories that we are in together. Asking questions about the details can be a way of 1) stalling, but 2) putting all the work of defining things on our scene partners. None of us actually know the answers to the questions, we are all making it up! So we can instead make statements to our scene partners that generously provide details, so that our story can move forward and that the work isn't on one person</p>
+    </div>
+
+    <div class="term yes">
+      <h3>✅ Yes And</h3>
+      <p><b>Accept the reality and add to it!</b> This is what we are striving to do (though we all make mistakes...more on that over the next 7 weeks...). We practiced saying our yes as enthusiastic as possible, just because I find that fun, but it can really look as simple as this:</p>
+      <div class="chat">
+        <div class="bubble"><b>Person A:</b>Hi Grandma!</div>
+        <div class="bubble b"><b>Person B:</b>Hi Kiddo! I'm so glad you are spending the night this weekend!</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== WEEK 2 ===================== -->
+  <section class="week" id="week2">
+    <h2>Week 2 CROW 10/4/26</h2>
+
+    <div class="letter">
+      <p>Hi Folks!</p>
+      <p>Here's our week 2 recap and additional happenings this week!</p>
+    </div>
+
+    <div class="item">
+      <h3>Top of class questions</h3>
+      <p>Who saw Improv? Connectionections, Reflections, or Connections over the week? What did we work on in class last week?</p>
+    </div>
+
+    <div class="item"><h3>Adjective Name Karam</h3><p>(from week 1)</p></div>
+
+    <div class="item"><p>Pick a person to notice throughout class through a positive lens</p></div>
+
+    <div class="item"><h3>Clap Circle</h3><p>(from week 1)</p></div>
+
+    <div class="item"><h3>Word Ball</h3><p>(from week 1)</p></div>
+
+    <div class="item"><p>Introduced ourselves to a partner for 1 minute. Focused on active listening instead of listening to speak. Introduced partner to group.</p></div>
+
+    <div class="item"><p>I Failed! We thought of a time when we failed and then applauded each other.</p></div>
+
+    <div class="item"><p>Failure Bows - Physicalized the feeling of failure and then turned it into a celebration and then the other group applauded.</p></div>
+
+    <div class="term yes">
+      <h3>🐦 CROW(E)</h3>
+      <p>Defined and discussed <b>CROW(E)</b> which is what improvisers are trying to establish during scenes:</p>
+      <ul class="crow">
+        <li><span class="badge" style="background:var(--C)">C</span>Character</li>
+        <li><span class="badge" style="background:var(--R)">R</span>Relationship</li>
+        <li><span class="badge" style="background:var(--O)">O</span>Objective</li>
+        <li><span class="badge" style="background:var(--W)">W</span>Where</li>
+        <li><span class="badge" style="background:var(--E)">E</span><span class="bonus">...bonus: Emotion</span></li>
+      </ul>
+    </div>
+
+    <div class="item"><p>Practiced the C of Crow with playing with walking different ways leading with different body parts and influenced by different animals</p></div>
+
+    <div class="item">
+      <h3>Thank You Endowment</h3>
+      <p>One person stands in the middle and poses. Everyone else take turns giving one line of dialogue, trying to include as much of CROW as possible in the one line. The person making the pose says "Thank you", because it's a gift to have your offer be given meaning</p>
+    </div>
+
+    <div class="item">
+      <h3>Corridors</h3>
+      <p>Standing in 2 lines, the front pair does a 3 line scene trying to establish CROW in those three lines.</p>
+    </div>
+
+    <div class="item">
+      <h3>Freeze Tag</h3>
+      <p>2 improvisers start a scene and we say "freeze" when CROW has been established. The 2 improvisers in the scene freeze, then the person who said freeze taps one of them out and assumes their physical position. They then begin a new scene with a new CROW justifying the physical position that they are in.</p>
+    </div>
+
+    <div class="item">
+      <h3>Focus Count</h3>
+      <p>Focusing on focal point the group sees how high we can count without people saying the same number. When that happens, we applaud wildly for our failure and then start back again at one.</p>
+    </div>
+
+    <div class="item">
+      <h3>Compliment Circle</h3>
+      <p>Told the person we were watching one thing they did well in class today.</p>
+    </div>
+
+    <div class="item">
+      <h3>It's Tuesday!</h3>
+      <p>One person says, "It's Tuesday!" and the other person continues. Dull is okay!</p>
+    </div>
+  </section>
+</main>
+</body>
+</html>
