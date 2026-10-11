@@ -1,6 +1,8 @@
-# aryanbdps9-improv-notes
+# improv-notes
 
 Improv 100 practice site: a CROW(E) word list with clickable idea cards, plus class notes.
+
+Live: https://aryanbdps9.github.io/improv-notes/
 
 - `index.html` - word list (Character, Relationship, Objective, Where, Emotion, Approaches, Names), CROW roulette, side pane with one-liners, It's Tuesday replies and Freeze Tag poses.
 - `notes.html` - weekly class recaps (originals in `notes/`).
